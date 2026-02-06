@@ -13,7 +13,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2 cursor-pointer">
-          <Triangle className="w-5 h-5 fill-tiscu-navy text-tiscu-navy" />
+          <Triangle className="w-4 h-4 fill-tiscu-navy text-tiscu-navy" />
           <span className="font-grotesk font-semibold tracking-tight text-lg text-tiscu-navy">
             TISCU
           </span>

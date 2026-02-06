@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
         <div className="flex items-center gap-2">
           {/* White Triangle beside TISCU - matching header exactly */}
-          <Triangle className="w-5 h-5 fill-tiscu-bg text-tiscu-bg" />
+          <Triangle className="w-4 h-4 fill-tiscu-bg text-tiscu-bg" />
           <span className="font-grotesk font-semibold tracking-tight text-lg text-tiscu-bg">
             TISCU
           </span>
