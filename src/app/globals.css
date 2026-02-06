@@ -60,6 +60,46 @@ body {
   border-color: rgba(238, 240, 243, 0.3);
 }
 
+/* Page Loader Styles */
+.page-loader {
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Disable hover effects during page transition */
+.disable-hover,
+.disable-hover * {
+  pointer-events: none !important;
+  cursor: wait !important;
+}
+
+/* Ensure smooth transitions for page loader */
+@media (prefers-reduced-motion: reduce) {
+  .page-loader {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .page-loader * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
 ::-webkit-scrollbar-thumb:active {
   background: #39455D;
   border-color: rgba(238, 240, 243, 0.4);
