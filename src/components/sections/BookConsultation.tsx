@@ -1,10 +1,267 @@
 "use client";
 
-import { useState } from "react";
-import { Send, Phone, Mail, MapPin } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Send, Phone, Mail, MapPin, ChevronDown, Calendar } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import { MagneticButton } from "@/components/ui/ScrollEffects";
 import { SERVICES_OPTIONS } from "@/lib/constants";
+
+// Custom Dropdown Component
+const CustomDropdown = ({
+  value,
+  onChange,
+  options,
+  placeholder,
+  label,
+  id,
+}: {
+  value: string;
+  onChange: (value: string) => void;
+  options: { value: string; label: string }[];
+  placeholder: string;
+  label: string;
+  id: string;
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const selectedOption = options.find(opt => opt.value === value);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setIsOpen(false);
+    } else if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setIsOpen(!isOpen);
+    }
+  };
+
+  return (
+    <div className="relative" ref={dropdownRef}>
+      <label
+        htmlFor={id}
+        className="mb-1.5 block font-mono text-xs text-tiscu-steel uppercase tracking-wider"
+      >
+        {label}
+      </label>
+      <button
+        id={id}
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        onKeyDown={handleKeyDown}
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
+        className="w-full border border-tiscu-navy/15 bg-tiscu-bg px-4 py-3 text-sm text-tiscu-navy outline-none transition-all duration-200 focus:border-tiscu-steel focus:ring-2 focus:ring-tiscu-steel/20 font-mono placeholder:text-tiscu-muted/60 flex items-center justify-between cursor-pointer hover:border-tiscu-steel/30"
+      >
+        <span className={value ? "text-tiscu-navy" : "text-tiscu-muted/60"}>
+          {selectedOption?.label || placeholder}
+        </span>
+        <ChevronDown className={`h-4 w-4 text-tiscu-steel transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+      
+      {isOpen && (
+        <ul
+          role="listbox"
+          className="absolute z-50 w-full mt-1 border border-tiscu-navy/15 bg-tiscu-bg shadow-lg max-h-60 overflow-auto focus:outline-none focus:ring-2 focus:ring-tiscu-steel/20"
+        >
+          {options.map((option) => (
+            <li
+              key={option.value}
+              role="option"
+              aria-selected={option.value === value}
+              onClick={() => {
+                onChange(option.value);
+                setIsOpen(false);
+              }}
+              className={`px-4 py-3 text-sm font-mono cursor-pointer transition-colors duration-150 ${
+                option.value === value
+                  ? 'bg-tiscu-steel/10 text-tiscu-navy'
+                  : 'text-tiscu-steel hover:bg-tiscu-navy/5 hover:text-tiscu-navy'
+              }`}
+            >
+              {option.label}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+// Custom Date Picker Component
+const CustomDatePicker = ({
+  value,
+  onChange,
+  label,
+  id,
+}: {
+  value: string;
+  onChange: (value: string) => void;
+  label: string;
+  id: string;
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(value ? new Date(value) : new Date());
+  const datePickerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (datePickerRef.current && !datePickerRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setIsOpen(false);
+    } else if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setIsOpen(!isOpen);
+    }
+  };
+
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
+
+  const handleDateSelect = (date: Date) => {
+    const dateString = date.toISOString().split('T')[0];
+    onChange(dateString);
+    setSelectedDate(date);
+    setIsOpen(false);
+  };
+
+  const generateCalendarDays = () => {
+    const year = selectedDate.getFullYear();
+    const month = selectedDate.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const startDate = new Date(firstDay);
+    startDate.setDate(startDate.getDate() - firstDay.getDay());
+    
+    const days = [];
+    const current = new Date(startDate);
+    
+    for (let i = 0; i < 42; i++) {
+      days.push(new Date(current));
+      current.setDate(current.getDate() + 1);
+    }
+    
+    return days;
+  };
+
+  const changeMonth = (increment: number) => {
+    const newDate = new Date(selectedDate);
+    newDate.setMonth(selectedDate.getMonth() + increment);
+    setSelectedDate(newDate);
+  };
+
+  return (
+    <div className="relative" ref={datePickerRef}>
+      <label
+        htmlFor={id}
+        className="mb-1.5 block font-mono text-xs text-tiscu-steel uppercase tracking-wider"
+      >
+        {label}
+      </label>
+      <button
+        id={id}
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        onKeyDown={handleKeyDown}
+        aria-expanded={isOpen}
+        aria-haspopup="dialog"
+        className="w-full border border-tiscu-navy/15 bg-tiscu-bg px-4 py-3 text-sm text-tiscu-navy outline-none transition-all duration-200 focus:border-tiscu-steel focus:ring-2 focus:ring-tiscu-steel/20 font-mono placeholder:text-tiscu-muted/60 flex items-center justify-between cursor-pointer hover:border-tiscu-steel/30"
+      >
+        <span className={value ? "text-tiscu-navy" : "text-tiscu-muted/60"}>
+          {value ? formatDate(new Date(value)) : "Select a date"}
+        </span>
+        <Calendar className="h-4 w-4 text-tiscu-steel" />
+      </button>
+      
+      {isOpen && (
+        <div className="absolute z-50 w-full mt-1 border border-tiscu-navy/15 bg-tiscu-bg shadow-lg p-4 focus:outline-none focus:ring-2 focus:ring-tiscu-steel/20">
+          <div className="flex items-center justify-between mb-4">
+            <button
+              type="button"
+              onClick={() => changeMonth(-1)}
+              className="p-1 hover:bg-tiscu-navy/10 rounded transition-colors duration-150"
+              aria-label="Previous month"
+            >
+              <ChevronDown className="h-4 w-4 text-tiscu-steel rotate-90" />
+            </button>
+            <span className="font-mono text-sm text-tiscu-navy">
+              {selectedDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+            </span>
+            <button
+              type="button"
+              onClick={() => changeMonth(1)}
+              className="p-1 hover:bg-tiscu-navy/10 rounded transition-colors duration-150"
+              aria-label="Next month"
+            >
+              <ChevronDown className="h-4 w-4 text-tiscu-steel -rotate-90" />
+            </button>
+          </div>
+          
+          <div className="grid grid-cols-7 gap-1 mb-2">
+            {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
+              <div
+                key={index}
+                className="text-center text-xs font-mono text-tiscu-steel uppercase tracking-wider py-1"
+              >
+                {day}
+              </div>
+            ))}
+          </div>
+          
+          <div className="grid grid-cols-7 gap-1">
+            {generateCalendarDays().map((date, index) => {
+              const isCurrentMonth = date.getMonth() === selectedDate.getMonth();
+              const isSelected = value && date.toDateString() === new Date(value).toDateString();
+              const isToday = date.toDateString() === new Date().toDateString();
+              
+              return (
+                <button
+                  key={index}
+                  type="button"
+                  onClick={() => handleDateSelect(date)}
+                  disabled={!isCurrentMonth}
+                  className={`
+                    p-2 text-xs font-mono rounded transition-colors duration-150
+                    ${!isCurrentMonth ? 'text-tiscu-muted/30 cursor-not-allowed' : ''}
+                    ${isSelected ? 'bg-tiscu-steel text-tiscu-bg' : ''}
+                    ${isToday && !isSelected ? 'border border-tiscu-steel text-tiscu-navy' : ''}
+                    ${isCurrentMonth && !isSelected && !isToday ? 'text-tiscu-steel hover:bg-tiscu-navy/5 cursor-pointer' : ''}
+                  `}
+                >
+                  {date.getDate()}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default function BookConsultation() {
   const [formData, setFormData] = useState({
@@ -136,46 +393,23 @@ export default function BookConsultation() {
                   />
                 </div>
                 <div>
-                  <label
-                    htmlFor="service"
-                    className="mb-1.5 block font-mono text-xs text-tiscu-steel uppercase tracking-wider"
-                  >
-                    Service Interest
-                  </label>
-                  <select
-                    id="service"
-                    required
-                    value={formData.service}
-                    onChange={(e) =>
-                      setFormData({ ...formData, service: e.target.value })
-                    }
-                    className={`${inputClasses} cursor-pointer`}
-                  >
-                    <option value="">Select a service</option>
-                    {SERVICES_OPTIONS.map((opt) => (
-                      <option key={opt.value} value={opt.value}>
-                        {opt.label}
-                      </option>
-                    ))}
-                  </select>
+                <CustomDropdown
+                  id="service"
+                  value={formData.service}
+                  onChange={(value) => setFormData({ ...formData, service: value })}
+                  options={SERVICES_OPTIONS}
+                  placeholder="Select a service"
+                  label="Service Interest"
+                />
                 </div>
               </div>
 
               <div className="mt-5">
-                <label
-                  htmlFor="date"
-                  className="mb-1.5 block font-mono text-xs text-tiscu-steel uppercase tracking-wider"
-                >
-                  Preferred Date
-                </label>
-                <input
+                <CustomDatePicker
                   id="date"
-                  type="date"
                   value={formData.date}
-                  onChange={(e) =>
-                    setFormData({ ...formData, date: e.target.value })
-                  }
-                  className={`${inputClasses} cursor-pointer`}
+                  onChange={(value) => setFormData({ ...formData, date: value })}
+                  label="Preferred Date"
                 />
               </div>
 
