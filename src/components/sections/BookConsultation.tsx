@@ -112,12 +112,14 @@ const CustomDatePicker = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(value ? new Date(value) : new Date());
+  const [viewMode, setViewMode] = useState<'calendar' | 'month' | 'year'>('calendar');
   const datePickerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (datePickerRef.current && !datePickerRef.current.contains(event.target as Node)) {
         setIsOpen(false);
+        setViewMode('calendar');
       }
     };
 
@@ -128,6 +130,7 @@ const CustomDatePicker = ({
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       setIsOpen(false);
+      setViewMode('calendar');
     } else if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       setIsOpen(!isOpen);
@@ -147,6 +150,7 @@ const CustomDatePicker = ({
     onChange(dateString);
     setSelectedDate(date);
     setIsOpen(false);
+    setViewMode('calendar');
   };
 
   const generateCalendarDays = () => {
@@ -174,6 +178,36 @@ const CustomDatePicker = ({
     setSelectedDate(newDate);
   };
 
+  const handleMonthSelect = (month: number) => {
+    const newDate = new Date(selectedDate);
+    newDate.setMonth(month);
+    setSelectedDate(newDate);
+    setViewMode('calendar');
+  };
+
+  const handleYearSelect = (year: number) => {
+    const newDate = new Date(selectedDate);
+    newDate.setFullYear(year);
+    setSelectedDate(newDate);
+    setViewMode('calendar');
+  };
+
+  const generateMonths = () => {
+    return [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+  };
+
+  const generateYears = () => {
+    const currentYear = new Date().getFullYear();
+    const years = [];
+    for (let i = currentYear - 50; i <= currentYear + 10; i++) {
+      years.push(i);
+    }
+    return years;
+  };
+
   return (
     <div className="relative" ref={datePickerRef}>
       <label
@@ -199,6 +233,7 @@ const CustomDatePicker = ({
       
       {isOpen && (
         <div className="absolute z-50 w-full mt-1 border border-tiscu-navy/15 bg-tiscu-bg shadow-lg p-4 focus:outline-none focus:ring-2 focus:ring-tiscu-steel/20">
+          {/* Header with clickable month/year */}
           <div className="flex items-center justify-between mb-4">
             <button
               type="button"
@@ -208,9 +243,24 @@ const CustomDatePicker = ({
             >
               <ChevronDown className="h-4 w-4 text-tiscu-steel rotate-90" />
             </button>
-            <span className="font-mono text-sm text-tiscu-navy">
-              {selectedDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-            </span>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setViewMode('month')}
+                className="font-mono text-sm text-tiscu-navy hover:text-tiscu-steel transition-colors duration-150 cursor-pointer min-h-[44px] min-w-[44px] px-2 py-1 rounded hover:bg-tiscu-navy/5"
+                aria-label="Select month"
+              >
+                {selectedDate.toLocaleDateString('en-US', { month: 'long' })}
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode('year')}
+                className="font-mono text-sm text-tiscu-navy hover:text-tiscu-steel transition-colors duration-150 cursor-pointer min-h-[44px] min-w-[44px] px-2 py-1 rounded hover:bg-tiscu-navy/5"
+                aria-label="Select year"
+              >
+                {selectedDate.getFullYear()}
+              </button>
+            </div>
             <button
               type="button"
               onClick={() => changeMonth(1)}
@@ -221,42 +271,84 @@ const CustomDatePicker = ({
             </button>
           </div>
           
-          <div className="grid grid-cols-7 gap-1 mb-2">
-            {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
-              <div
-                key={index}
-                className="text-center text-xs font-mono text-tiscu-steel uppercase tracking-wider py-1"
-              >
-                {day}
+          {viewMode === 'calendar' && (
+            <>
+              <div className="grid grid-cols-7 gap-1 mb-2">
+                {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, index) => (
+                  <div
+                    key={index}
+                    className="text-center text-xs font-mono text-tiscu-steel uppercase tracking-wider py-1"
+                  >
+                    {day}
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          
-          <div className="grid grid-cols-7 gap-1">
-            {generateCalendarDays().map((date, index) => {
-              const isCurrentMonth = date.getMonth() === selectedDate.getMonth();
-              const isSelected = value && date.toDateString() === new Date(value).toDateString();
-              const isToday = date.toDateString() === new Date().toDateString();
               
-              return (
+              <div className="grid grid-cols-7 gap-1">
+                {generateCalendarDays().map((date, index) => {
+                  const isCurrentMonth = date.getMonth() === selectedDate.getMonth();
+                  const isSelected = value && date.toDateString() === new Date(value).toDateString();
+                  const isToday = date.toDateString() === new Date().toDateString();
+                  
+                  return (
+                    <button
+                      key={index}
+                      type="button"
+                      onClick={() => handleDateSelect(date)}
+                      disabled={!isCurrentMonth}
+                      className={`
+                        p-2 text-xs font-mono rounded transition-colors duration-150
+                        ${!isCurrentMonth ? 'text-tiscu-muted/30 cursor-not-allowed' : ''}
+                        ${isSelected ? 'bg-tiscu-steel text-tiscu-bg' : ''}
+                        ${isToday && !isSelected ? 'border border-tiscu-steel text-tiscu-navy' : ''}
+                        ${isCurrentMonth && !isSelected && !isToday ? 'text-tiscu-steel hover:bg-tiscu-navy/5 cursor-pointer' : ''}
+                      `}
+                    >
+                      {date.getDate()}
+                    </button>
+                  );
+                })}
+              </div>
+            </>
+          )}
+          
+          {viewMode === 'month' && (
+            <div className="grid grid-cols-3 gap-2">
+              {generateMonths().map((month, index) => (
                 <button
-                  key={index}
+                  key={month}
                   type="button"
-                  onClick={() => handleDateSelect(date)}
-                  disabled={!isCurrentMonth}
-                  className={`
-                    p-2 text-xs font-mono rounded transition-colors duration-150
-                    ${!isCurrentMonth ? 'text-tiscu-muted/30 cursor-not-allowed' : ''}
-                    ${isSelected ? 'bg-tiscu-steel text-tiscu-bg' : ''}
-                    ${isToday && !isSelected ? 'border border-tiscu-steel text-tiscu-navy' : ''}
-                    ${isCurrentMonth && !isSelected && !isToday ? 'text-tiscu-steel hover:bg-tiscu-navy/5 cursor-pointer' : ''}
-                  `}
+                  onClick={() => handleMonthSelect(index)}
+                  className={`p-3 text-xs font-mono rounded transition-colors duration-150 min-h-[44px] min-w-[44px] ${
+                    selectedDate.getMonth() === index
+                      ? 'bg-tiscu-steel text-tiscu-bg'
+                      : 'text-tiscu-steel hover:bg-tiscu-navy/5 cursor-pointer'
+                  }`}
                 >
-                  {date.getDate()}
+                  {month.slice(0, 3)}
                 </button>
-              );
-            })}
-          </div>
+              ))}
+            </div>
+          )}
+          
+          {viewMode === 'year' && (
+            <div className="grid grid-cols-4 gap-2 max-h-60 overflow-auto">
+              {generateYears().map((year) => (
+                <button
+                  key={year}
+                  type="button"
+                  onClick={() => handleYearSelect(year)}
+                  className={`p-2 text-xs font-mono rounded transition-colors duration-150 min-h-[44px] min-w-[44px] ${
+                    selectedDate.getFullYear() === year
+                      ? 'bg-tiscu-steel text-tiscu-bg'
+                      : 'text-tiscu-steel hover:bg-tiscu-navy/5 cursor-pointer'
+                  }`}
+                >
+                  {year}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>
