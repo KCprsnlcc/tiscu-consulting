@@ -82,8 +82,13 @@ export default function TiscuConcept() {
           />
 
           <div className="relative z-10 flex justify-between items-start">
-            <div className="w-8 h-8 border border-tiscu-muted rounded-full flex items-center justify-center">
-              <Compass className="w-4 h-4 text-tiscu-muted" />
+            <div className="text-left">
+              <p className="font-grotesk text-sm font-medium text-tiscu-muted mb-1">
+                Business Architecture
+              </p>
+              <p className="font-mono text-xs text-tiscu-muted/70">
+                Strategic Framework
+              </p>
             </div>
             <span className="font-mono text-xs tracking-widest text-tiscu-muted text-right">
               REF: 24-B
