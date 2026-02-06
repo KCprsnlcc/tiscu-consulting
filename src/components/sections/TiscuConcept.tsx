@@ -94,7 +94,7 @@ export default function TiscuConcept() {
 
           <div className="relative z-10 h-full flex items-center justify-center lg:justify-end gap-8">
             {/* Photo */}
-            <div className="hidden lg:block w-64 h-4/5 rounded-lg border border-tiscu-muted/30 overflow-hidden relative group bg-tiscu-navy">
+            <div className="hidden lg:block w-64 h-4/5 rounded-lg border border-tiscu-muted/30 overflow-hidden relative bg-tiscu-navy">
               {/* Sharp linear curves */}
               <div className="absolute inset-0">
                 <div className="absolute inset-x-0 top-0 h-1/2 bg-tiscu-navy/60 transform skew-y-3 origin-top"></div>
@@ -118,7 +118,7 @@ export default function TiscuConcept() {
               <img 
                 src="/jerico-lugo.png" 
                 alt="Jerico Lugo" 
-                className="w-full h-full object-cover relative z-10 rounded-lg transform scale-105 group-hover:scale-110 transition-transform duration-700 ease-out"
+                className="w-full h-full object-cover relative z-10 rounded-lg transform scale-105"
               />
               
               {/* Sharp geometric borders */}
