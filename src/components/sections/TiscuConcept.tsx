@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Compass } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
+import { StaggerContainer, TypewriterReveal, ParallaxContainer } from "@/components/ui/ScrollEffects";
 import { TISCU_LETTERS } from "@/lib/constants";
 
 export default function TiscuConcept() {
@@ -11,48 +12,40 @@ export default function TiscuConcept() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[800px]">
         {/* Left: Typographic Deconstruction */}
         <div className="lg:col-span-7 py-16 px-6 lg:pr-16 lg:border-r border-tiscu-navy/10 flex flex-col justify-between relative">
-          {/* Background Watermark */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none select-none">
+          {/* Background Watermark with parallax */}
+          <ParallaxContainer speed={0.1} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none select-none">
             <span className="font-grotesk text-[20rem] font-bold tracking-tighter">
               T
             </span>
-          </div>
+          </ParallaxContainer>
 
           <div className="space-y-12 z-10">
             <div>
-              <FadeIn>
+              <TypewriterReveal delay={0}>
                 <h2 className="font-grotesk text-3xl font-medium tracking-tight mb-8 text-tiscu-navy">
                   The T-Square Philosophy
                 </h2>
-              </FadeIn>
+              </TypewriterReveal>
               <FadeIn delay={0.1}>
                 <p className="text-xs text-tiscu-steel uppercase tracking-wider font-mono mb-4">
                   Fig 1.0 — Architectural Alignment
                 </p>
               </FadeIn>
-              <FadeIn delay={0.15}>
+              <TypewriterReveal delay={0.15}>
                 <p className="text-lg leading-relaxed text-tiscu-navy max-w-xl">
                   Inspired by the simple yet critical &ldquo;T-Square&rdquo; used
                   by architects. Like the letters of the word, TISCU understands
                   that businesses traverse various phases, requiring distinct
                   approaches to push further for growth.
                 </p>
-              </FadeIn>
+              </TypewriterReveal>
             </div>
 
             {/* Deconstructed Letters Grid */}
-            <div className="grid gap-8">
+            <StaggerContainer staggerDelay={0.12} direction="up" className="grid gap-8">
               {TISCU_LETTERS.map((item, i) => (
                 <motion.div
                   key={item.letter}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    delay: i * 0.12,
-                    duration: 0.6,
-                    ease: [0.25, 0.4, 0.25, 1],
-                  }}
                   className="group border-l-2 border-tiscu-steel/30 hover:border-tiscu-navy pl-6 transition-colors duration-500 cursor-pointer"
                 >
                   <h3 className="font-grotesk text-4xl font-semibold mb-2 text-tiscu-navy">
@@ -79,7 +72,7 @@ export default function TiscuConcept() {
                   </p>
                 </motion.div>
               ))}
-            </div>
+            </StaggerContainer>
           </div>
         </div>
 

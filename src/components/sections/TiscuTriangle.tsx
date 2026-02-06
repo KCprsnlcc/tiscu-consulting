@@ -2,6 +2,7 @@
 
 import { Triangle } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
+import { ParallaxContainer, ScaleOnScroll, WaterWave } from "@/components/ui/ScrollEffects";
 import { TRIANGLE_PILLARS } from "@/lib/constants";
 
 export default function TiscuTriangle() {
@@ -10,9 +11,16 @@ export default function TiscuTriangle() {
       id="triangle"
       className="bg-tiscu-steel text-tiscu-bg py-24 relative overflow-hidden"
     >
-      {/* Architectural Lines */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-tiscu-bg/20" />
-      <div className="absolute top-1/2 left-0 w-full h-px bg-tiscu-bg/20" />
+      {/* Water wave background effect */}
+      <WaterWave className="pointer-events-none" amplitude={30} />
+      
+      {/* Architectural Lines with parallax */}
+      <ParallaxContainer speed={0.1} className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-tiscu-bg/20 pointer-events-none">
+        <div className="w-full h-full" />
+      </ParallaxContainer>
+      <ParallaxContainer speed={0.15} className="absolute top-1/2 left-0 w-full h-px bg-tiscu-bg/20 pointer-events-none">
+        <div className="w-full h-full" />
+      </ParallaxContainer>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <FadeIn>
@@ -44,7 +52,7 @@ export default function TiscuTriangle() {
           </FadeIn>
 
           {/* Center Shape (Visual Anchor) */}
-          <FadeIn delay={0.2}>
+          <ScaleOnScroll scaleRange={[0.8, 1]}>
             <div className="flex justify-center py-8 lg:py-0">
               <div className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
                 {/* Outer Ring */}
@@ -66,7 +74,7 @@ export default function TiscuTriangle() {
                 </svg>
               </div>
             </div>
-          </FadeIn>
+          </ScaleOnScroll>
 
           {/* Right Pillar */}
           <FadeIn direction="right">

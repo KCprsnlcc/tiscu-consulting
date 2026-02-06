@@ -4,10 +4,12 @@ import TiscuConcept from "@/components/sections/TiscuConcept";
 import TiscuTriangle from "@/components/sections/TiscuTriangle";
 import BookConsultation from "@/components/sections/BookConsultation";
 import Footer from "@/components/sections/Footer";
+import { ScrollProgress } from "@/components/ui/ScrollEffects";
 
 export default function Home() {
   return (
     <main className="bg-tiscu-bg text-tiscu-navy font-sans antialiased">
+      <ScrollProgress />
       <Navbar />
       <Hero />
       <TiscuConcept />

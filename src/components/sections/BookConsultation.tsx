@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Send, Phone, Mail, MapPin } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
+import { MagneticButton } from "@/components/ui/ScrollEffects";
 import { SERVICES_OPTIONS } from "@/lib/constants";
 
 export default function BookConsultation() {
@@ -197,7 +198,7 @@ export default function BookConsultation() {
                 />
               </div>
 
-              <button
+              <MagneticButton
                 type="submit"
                 className="mt-6 inline-flex w-full items-center justify-center gap-2 border border-tiscu-navy bg-tiscu-navy px-6 py-3.5 font-grotesk text-sm font-medium text-tiscu-bg transition-all duration-300 hover:bg-transparent hover:text-tiscu-navy cursor-pointer"
               >
@@ -209,7 +210,7 @@ export default function BookConsultation() {
                     <Send className="h-4 w-4" />
                   </>
                 )}
-              </button>
+              </MagneticButton>
             </form>
           </FadeIn>
         </div>
