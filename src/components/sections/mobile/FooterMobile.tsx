@@ -9,7 +9,7 @@ export default function FooterMobile() {
         <div className="flex flex-col items-center text-center mb-8">
           <div className="flex items-center gap-2 mb-4">
             {/* White Triangle beside TISCU - matching header exactly */}
-            <Triangle className="w-5 h-5 fill-tiscu-bg text-tiscu-bg" />
+            <Triangle className="w-4 h-4 fill-tiscu-bg text-tiscu-bg" />
             <span className="font-grotesk font-semibold tracking-tight text-lg text-tiscu-bg">
               TISCU
             </span>

@@ -103,11 +103,13 @@ export default function TiscuConceptMobile() {
                   <div className="absolute inset-x-0 bottom-0 h-1/2 bg-tiscu-blue/60 transform -skew-y-3 origin-bottom"></div>
                 </div>
                 
-                {/* Linear white abstract effect - simplified */}
+                {/* Linear white abstract effect */}
                 <div className="absolute inset-0">
                   <div className="absolute top-1/4 left-0 w-full h-px bg-white/40 transform rotate-12 scale-x-150"></div>
                   <div className="absolute top-1/2 left-0 w-full h-px bg-white/30 transform -rotate-6 scale-x-125"></div>
                   <div className="absolute top-3/4 left-0 w-full h-px bg-white/35 transform rotate-3 scale-x-140"></div>
+                  <div className="absolute top-1/6 right-0 w-2/3 h-px bg-white/25 transform rotate-45"></div>
+                  <div className="absolute bottom-1/6 left-0 w-1/2 h-px bg-white/20 transform -rotate-30"></div>
                 </div>
                 
                 {/* Image */}

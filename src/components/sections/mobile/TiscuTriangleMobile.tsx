@@ -40,16 +40,9 @@ export default function TiscuTriangleMobile() {
             {/* Outer Ring */}
             <div className="absolute inset-0 border border-tiscu-bg/20 rounded-full animate-[spin_10s_linear_infinite]" />
             {/* Triangle */}
-            <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-2xl">
-              {/* Rounded triangle matching design system */}
-              <path
-                d="M 56.64,27.33 L 78.36,67.67 Q 85,80 71,80 L 29,80 Q 15,80 21.64,67.67 L 43.36,27.33 Q 50,15 56.64,27.33 Z"
-                fill="#39455D"
-                stroke="#EEF0F3"
-                strokeWidth="5"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <div className="w-full h-full flex items-center justify-center">
+              <Triangle className="w-32 h-32 sm:w-40 sm:h-40 fill-tiscu-navy text-tiscu-bg stroke-tiscu-bg drop-shadow-2xl" />
+            </div>
           </div>
         </div>
 
