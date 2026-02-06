@@ -15,7 +15,6 @@ import TiscuConceptMobile from "@/components/sections/mobile/TiscuConceptMobile"
 import TiscuTriangleMobile from "@/components/sections/mobile/TiscuTriangleMobile";
 import BookConsultationMobile from "@/components/sections/mobile/BookConsultationMobile";
 import FooterMobile from "@/components/sections/mobile/FooterMobile";
-import LenisTest from "@/components/ui/LenisTest";
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
@@ -33,7 +32,6 @@ export default function Home() {
   return (
     <main className="bg-tiscu-bg text-tiscu-navy font-sans antialiased">
       <ScrollProgress />
-      <LenisTest />
       <Navbar />
       {isMobile ? <HeroMobile /> : <Hero />}
       {isMobile ? <TiscuConceptMobile /> : <TiscuConcept />}
