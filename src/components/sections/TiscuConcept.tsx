@@ -93,12 +93,42 @@ export default function TiscuConcept() {
           </div>
 
           <div className="relative z-10 h-full flex items-center justify-center lg:justify-end gap-8">
-            {/* Placeholder Photo */}
-            <div className="hidden lg:block w-64 h-4/5 bg-tiscu-muted/20 rounded-lg border border-tiscu-muted/30 flex items-center justify-center">
-              <div className="text-center">
-                <p className="text-sm text-tiscu-muted font-mono">PHOTO</p>
-                <p className="text-xs text-tiscu-muted/70">Placeholder</p>
+            {/* Photo */}
+            <div className="hidden lg:block w-64 h-4/5 rounded-lg border border-tiscu-muted/30 overflow-hidden relative group bg-tiscu-navy">
+              {/* Sharp linear curves */}
+              <div className="absolute inset-0">
+                <div className="absolute inset-x-0 top-0 h-1/2 bg-tiscu-navy/60 transform skew-y-3 origin-top"></div>
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-tiscu-blue/60 transform -skew-y-3 origin-bottom"></div>
               </div>
+              
+              {/* Linear white abstract effect */}
+              <div className="absolute inset-0">
+                <div className="absolute top-1/4 left-0 w-full h-px bg-white/40 transform rotate-12 scale-x-150"></div>
+                <div className="absolute top-1/2 left-0 w-full h-px bg-white/30 transform -rotate-6 scale-x-125"></div>
+                <div className="absolute top-3/4 left-0 w-full h-px bg-white/35 transform rotate-3 scale-x-140"></div>
+                <div className="absolute top-1/6 right-0 w-2/3 h-px bg-white/25 transform rotate-45"></div>
+                <div className="absolute bottom-1/6 left-0 w-1/2 h-px bg-white/20 transform -rotate-30"></div>
+              </div>
+              
+              {/* Sharp linear accent */}
+              <div className="absolute inset-x-0 top-1/3 h-px bg-tiscu-navy/80 transform rotate-2"></div>
+              <div className="absolute inset-x-0 bottom-1/3 h-px bg-tiscu-blue/80 transform -rotate-2"></div>
+              
+              {/* Image with enhanced styling */}
+              <img 
+                src="/jerico-lugo.png" 
+                alt="Jerico Lugo" 
+                className="w-full h-full object-cover relative z-10 rounded-lg transform scale-105 group-hover:scale-110 transition-transform duration-700 ease-out"
+              />
+              
+              {/* Sharp geometric borders */}
+              <div className="absolute inset-0 rounded-lg pointer-events-none">
+                <div className="absolute inset-0 rounded-lg border-2 border-tiscu-muted/40"></div>
+                <div className="absolute inset-2 rounded-lg border border-tiscu-muted/20"></div>
+              </div>
+              
+              {/* Sharp linear glow on hover */}
+              <div className="absolute -inset-1 bg-tiscu-navy/30 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </div>
             
             <h2
