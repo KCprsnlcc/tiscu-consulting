@@ -2,7 +2,7 @@
 
 import { Triangle } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
-import { ParallaxContainer, ScaleOnScroll, WaterWave } from "@/components/ui/ScrollEffects";
+import { ParallaxContainer } from "@/components/ui/ScrollEffects";
 import { TRIANGLE_PILLARS } from "@/lib/constants";
 
 export default function TiscuTriangle() {
@@ -11,9 +11,6 @@ export default function TiscuTriangle() {
       id="triangle"
       className="bg-tiscu-steel text-tiscu-bg py-24 relative overflow-hidden"
     >
-      {/* Water wave background effect */}
-      <WaterWave className="pointer-events-none" amplitude={30} />
-      
       {/* Architectural Lines with parallax */}
       <ParallaxContainer speed={0.1} className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-tiscu-bg/20 pointer-events-none">
         <div className="w-full h-full" />
@@ -52,29 +49,23 @@ export default function TiscuTriangle() {
           </FadeIn>
 
           {/* Center Shape (Visual Anchor) */}
-          <ScaleOnScroll scaleRange={[0.8, 1]}>
-            <div className="flex justify-center py-8 lg:py-0">
-              <div className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
-                {/* Outer Ring */}
-                <div className="absolute inset-0 border border-tiscu-bg/20 rounded-full animate-[spin_10s_linear_infinite]" />
-                {/* Triangle */}
-                <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-2xl">
-                  <polygon
-                    points="50,15 85,80 15,80"
-                    fill="transparent"
-                    stroke="#EEF0F3"
-                    strokeWidth="2"
-                    className="opacity-90"
-                  />
-                  <polygon
-                    points="50,25 78,75 22,75"
-                    fill="#39455D"
-                    stroke="none"
-                  />
-                </svg>
-              </div>
+          <div className="flex justify-center py-8 lg:py-0">
+            <div className="relative w-80 h-80 md:w-96 md:h-96 flex items-center justify-center">
+              {/* Outer Ring */}
+              <div className="absolute inset-0 border border-tiscu-bg/20 rounded-full animate-[spin_10s_linear_infinite]" />
+              {/* Triangle */}
+              <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-2xl">
+                {/* Rounded triangle matching design system */}
+                <path
+                  d="M 56.64,27.33 L 78.36,67.67 Q 85,80 71,80 L 29,80 Q 15,80 21.64,67.67 L 43.36,27.33 Q 50,15 56.64,27.33 Z"
+                  fill="#39455D"
+                  stroke="#EEF0F3"
+                  strokeWidth="5"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </div>
-          </ScaleOnScroll>
+          </div>
 
           {/* Right Pillar */}
           <FadeIn direction="right">

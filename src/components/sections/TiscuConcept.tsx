@@ -12,13 +12,7 @@ export default function TiscuConcept() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[800px]">
         {/* Left: Typographic Deconstruction */}
         <div className="lg:col-span-7 py-16 px-6 lg:pr-16 lg:border-r border-tiscu-navy/10 flex flex-col justify-between relative">
-          {/* Background Watermark with parallax */}
-          <ParallaxContainer speed={0.1} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none select-none">
-            <span className="font-grotesk text-[20rem] font-bold tracking-tighter">
-              T
-            </span>
-          </ParallaxContainer>
-
+          
           <div className="space-y-12 z-10">
             <div>
               <TypewriterReveal delay={0}>
