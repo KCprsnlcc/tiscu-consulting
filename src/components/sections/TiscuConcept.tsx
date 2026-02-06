@@ -9,7 +9,7 @@ import { TISCU_LETTERS } from "@/lib/constants";
 export default function TiscuConcept() {
   return (
     <section id="concept" className="border-t border-tiscu-navy/10 bg-tiscu-bg">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[800px]">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[600px]">
         {/* Left: Typographic Deconstruction */}
         <div className="lg:col-span-7 py-16 px-6 lg:pr-16 lg:border-r border-tiscu-navy/10 flex flex-col justify-between relative">
           
@@ -71,7 +71,7 @@ export default function TiscuConcept() {
         </div>
 
         {/* Right: Vertical Concept Title + Blueprint Aesthetic */}
-        <div className="lg:col-span-5 bg-tiscu-navy text-tiscu-bg relative overflow-hidden flex flex-col justify-between p-8 md:p-12">
+        <div className="lg:col-span-5 bg-tiscu-navy text-tiscu-bg relative overflow-hidden flex flex-col justify-between p-6 md:p-8">
           {/* Subtle grid overlay */}
           <div
             className="absolute inset-0 opacity-10"
@@ -82,8 +82,8 @@ export default function TiscuConcept() {
           />
 
           <div className="relative z-10 flex justify-between items-start">
-            <div className="w-12 h-12 border border-tiscu-muted rounded-full flex items-center justify-center">
-              <Compass className="w-6 h-6 text-tiscu-muted" />
+            <div className="w-8 h-8 border border-tiscu-muted rounded-full flex items-center justify-center">
+              <Compass className="w-4 h-4 text-tiscu-muted" />
             </div>
             <span className="font-mono text-xs tracking-widest text-tiscu-muted text-right">
               REF: 24-B
@@ -92,20 +92,20 @@ export default function TiscuConcept() {
             </span>
           </div>
 
-          <div className="relative z-10 h-full flex items-center justify-center lg:justify-end py-12">
+          <div className="relative z-10 h-full flex items-center justify-center lg:justify-end">
             <h2
               className="font-grotesk text-6xl md:text-8xl font-semibold tracking-tight text-tiscu-bg opacity-90"
               style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
             >
-              THE TISCU CONCEPT
+              THE TISCU<br />CONCEPT
             </h2>
           </div>
 
-          <div className="relative z-10 border-t border-tiscu-muted/30 pt-6">
+          <div className="relative z-10 border-t border-tiscu-muted/30 pt-4">
             <p className="font-mono text-xs text-tiscu-muted uppercase tracking-widest mb-2">
               Primary Directive
             </p>
-            <p className="text-lg font-light leading-snug text-tiscu-bg">
+            <p className="text-sm font-light leading-snug text-tiscu-bg">
               Anchoring business tailored structures for resource optimization.
             </p>
           </div>
