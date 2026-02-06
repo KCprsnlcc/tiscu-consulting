@@ -270,11 +270,13 @@ export const StaggerContainer = ({
 export const MagneticButton = ({ 
   children, 
   className = "",
-  strength = 0.3
+  strength = 0.3,
+  type = "button"
 }: {
   children: React.ReactNode;
   className?: string;
   strength?: number;
+  type?: "button" | "submit" | "reset";
 }) => {
   const ref = useRef<HTMLButtonElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -299,6 +301,7 @@ export const MagneticButton = ({
   return (
     <motion.button
       ref={ref}
+      type={type}
       className={className}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
