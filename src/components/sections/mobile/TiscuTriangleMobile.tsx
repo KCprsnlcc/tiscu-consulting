@@ -36,12 +36,12 @@ export default function TiscuTriangleMobile() {
 
         {/* Mobile Triangle Visual */}
         <div className="flex justify-center mb-12">
-          <div className="relative w-64 h-64 sm:w-80 sm:h-80 flex items-center justify-center">
+          <div className="relative w-80 h-80 sm:w-96 sm:h-96 flex items-center justify-center">
             {/* Outer Ring */}
             <div className="absolute inset-0 border border-tiscu-bg/20 rounded-full animate-[spin_10s_linear_infinite]" />
             {/* Triangle */}
             <div className="w-full h-full flex items-center justify-center">
-              <Triangle className="w-32 h-32 sm:w-40 sm:h-40 fill-tiscu-navy text-tiscu-bg stroke-tiscu-bg drop-shadow-2xl" />
+              <Triangle className="w-56 h-56 sm:w-64 sm:h-64 fill-tiscu-navy text-tiscu-bg stroke-tiscu-bg drop-shadow-2xl" />
             </div>
           </div>
         </div>
