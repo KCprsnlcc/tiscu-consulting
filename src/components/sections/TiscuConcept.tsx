@@ -92,7 +92,18 @@ export default function TiscuConcept() {
             </span>
           </div>
 
-          <div className="relative z-10 h-full flex items-center justify-center lg:justify-end">
+          <div className="relative z-10 h-full flex items-center justify-center lg:justify-end gap-8">
+            {/* Placeholder Photo */}
+            <div className="hidden lg:block w-64 h-4/5 bg-tiscu-muted/20 rounded-lg border border-tiscu-muted/30 flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-24 h-24 bg-tiscu-muted/30 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <Compass className="w-12 h-12 text-tiscu-muted" />
+                </div>
+                <p className="text-sm text-tiscu-muted font-mono">PHOTO</p>
+                <p className="text-xs text-tiscu-muted/70">Placeholder</p>
+              </div>
+            </div>
+            
             <h2
               className="font-grotesk text-6xl md:text-8xl font-semibold tracking-tight text-tiscu-bg opacity-90"
               style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
