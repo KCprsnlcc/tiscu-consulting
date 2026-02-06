@@ -87,10 +87,10 @@ export default function PageTransitionProvider({ children }: PageTransitionProvi
   const endTransition = () => {
     console.log("Ending transition"); // Debug log
     
-    // First set transitioning to true to trigger slide out
+    // First set transitioning to true to trigger fade out, then slide
     setIsTransitioning(true);
     
-    // Then after slide animation completes, hide loader
+    // Then after fade out (0.4s) + slide animation (0.9s + 0.5s delay) completes, hide loader
     setTimeout(() => {
       setIsLoading(false);
       setIsTransitioning(false);
@@ -112,7 +112,7 @@ export default function PageTransitionProvider({ children }: PageTransitionProvi
           document.body.removeChild(announcement);
         }
       }, 1000);
-    }, shouldReduceMotion ? 0 : 1400); // Wait for slide animation (0.9s + 0.5s delay)
+    }, shouldReduceMotion ? 0 : 1800); // Wait for fade out (0.4s) + slide animation (0.9s + 0.5s delay)
   };
 
   // Handle route changes

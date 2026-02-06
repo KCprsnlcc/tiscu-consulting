@@ -71,52 +71,58 @@ export default function PageLoader() {
       aria-busy={isLoading}
     >
       <div className="flex items-center justify-center h-full">
-        {!isTransitioning && ( // Only show content when not transitioning out
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ 
+            opacity: isTransitioning ? 0 : 1, // Fade out when transitioning
+            scale: isTransitioning ? 0.8 : 1 // Scale down when transitioning
+          }}
+          transition={{
+            duration: 0.4, // Quick fade out
+            ease: [0.25, 0.4, 0.25, 1],
+          }}
+          className="flex flex-col items-center gap-4"
+        >
+          {/* TISCU Triangle Logo */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
+            animate={{
+              rotate: [0, 360],
+            }}
             transition={{
-              duration: 0.6,
-              delay: 0.2,
+              duration: 2,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="relative"
+            aria-hidden="true"
+            style={{
+              opacity: isTransitioning ? 0 : 1, // Also fade logo independently
+              transition: "opacity 0.3s ease-out"
+            }}
+          >
+            <Triangle 
+              className="w-16 h-16 text-tiscu-bg" 
+              fill="currentColor"
+              strokeWidth={0}
+            />
+          </motion.div>
+          
+          {/* Loading Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ 
+              opacity: isTransitioning ? 0 : 1, // Fade out text when transitioning
+              y: isTransitioning ? -10 : 0 // Move text up slightly when fading
+            }}
+            transition={{
+              duration: 0.3, // Faster fade for text
               ease: [0.25, 0.4, 0.25, 1],
             }}
-            className="flex flex-col items-center gap-4"
+            className="text-tiscu-bg font-grotesk font-semibold tracking-widest text-sm uppercase"
           >
-            {/* TISCU Triangle Logo */}
-            <motion.div
-              animate={{
-                rotate: [0, 360],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              className="relative"
-              aria-hidden="true"
-            >
-              <Triangle 
-                className="w-16 h-16 text-tiscu-bg" 
-                fill="currentColor"
-                strokeWidth={0}
-              />
-            </motion.div>
-            
-            {/* Loading Text */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: 0.4,
-                ease: [0.25, 0.4, 0.25, 1],
-              }}
-              className="text-tiscu-bg font-grotesk font-semibold tracking-widest text-sm uppercase"
-            >
-              TISCU
-            </motion.div>
+            TISCU
           </motion.div>
-        )}
+        </motion.div>
       </div>
 
       {/* Subtle gradient overlay for depth */}
