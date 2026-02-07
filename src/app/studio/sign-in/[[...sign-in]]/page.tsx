@@ -1,7 +1,7 @@
 "use client";
 
 import { SignIn } from "@clerk/nextjs";
-import { Shield, Lock } from "lucide-react";
+import { Lock } from "lucide-react";
 
 export default function SignInPage() {
   return (
@@ -9,14 +9,6 @@ export default function SignInPage() {
       <div className="w-full max-w-md">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <div className="flex items-center justify-center mb-6">
-            <div className="relative">
-              <div className="w-16 h-16 bg-tiscu-navy rounded-2xl flex items-center justify-center shadow-lg">
-                <Shield className="w-8 h-8 text-white" />
-              </div>
-              <div className="absolute -top-1 -right-1 w-4 h-4 bg-tiscu-steel rounded-full border-2 border-tiscu-bg"></div>
-            </div>
-          </div>
           
           <div className="space-y-3">
             <span className="font-mono text-[10px] text-tiscu-steel uppercase tracking-widest block">
@@ -35,47 +27,44 @@ export default function SignInPage() {
         </div>
 
         {/* Sign-in Form */}
-        <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-tiscu-navy/5 to-tiscu-steel/5 rounded-2xl transform rotate-1"></div>
-          <div className="relative bg-white/80 backdrop-blur-sm border border-tiscu-navy/10 rounded-2xl shadow-xl p-8">
-            <SignIn
-              appearance={{
-                elements: {
-                  rootBox: "mx-auto",
-                  card: "shadow-none border-0 bg-transparent",
-                  headerTitle: "font-grotesk text-tiscu-navy text-xl font-medium",
-                  headerSubtitle: "font-mono text-tiscu-steel text-xs hidden",
-                  socialButtonsBlock: "hidden",
-                  dividerRow: "hidden",
-                  form: "space-y-5",
-                  formField: "space-y-2",
-                  formFieldLabel: "font-mono text-xs text-tiscu-steel uppercase tracking-wider mb-2 block",
-                  formFieldInput: 
-                    "border-tiscu-navy/20 bg-white/60 focus:border-tiscu-steel focus:ring-2 focus:ring-tiscu-steel/20 " +
-                    "font-mono text-sm text-tiscu-navy placeholder-tiscu-muted/50 " +
-                    "rounded-lg px-4 py-3 transition-all duration-200",
-                  formButtonPrimary:
-                    "w-full bg-tiscu-navy hover:bg-tiscu-steel focus:bg-tiscu-steel " +
-                    "text-white font-mono text-xs uppercase tracking-wider py-3 px-4 " +
-                    "rounded-lg transition-all duration-200 transform hover:scale-[1.02] " +
-                    "shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-tiscu-steel/20",
-                  formButtonSecondary: "hidden",
-                  footerAction: "mt-6 pt-6 border-t border-tiscu-navy/10",
-                  footerActionLink: 
-                    "text-tiscu-steel hover:text-tiscu-navy font-mono text-xs " +
-                    "transition-colors duration-200 underline decoration-2 underline-offset-4",
-                  identityPreview: 
-                    "bg-tiscu-navy/5 border-tiscu-navy/10 rounded-lg p-3 mb-4",
-                  identityPreviewText: "font-mono text-xs text-tiscu-steel",
-                  alertBox: 
-                    "bg-tiscu-navy/5 border-tiscu-steel/20 rounded-lg p-3",
-                  alertText: "font-mono text-xs text-tiscu-navy",
-                },
-              }}
-              afterSignInUrl="/studio/dashboard"
-              redirectUrl="/studio/dashboard"
-            />
-          </div>
+        <div className="relative bg-white/80 backdrop-blur-sm border border-tiscu-navy/10 rounded-2xl shadow-xl p-8">
+          <SignIn
+            appearance={{
+              elements: {
+                rootBox: "mx-auto",
+                card: "shadow-none border-0 bg-transparent",
+                headerTitle: "font-grotesk text-tiscu-navy text-xl font-medium",
+                headerSubtitle: "font-mono text-tiscu-steel text-xs hidden",
+                socialButtonsBlock: "hidden",
+                dividerRow: "hidden",
+                form: "space-y-5",
+                formField: "space-y-2",
+                formFieldLabel: "font-mono text-xs text-tiscu-steel uppercase tracking-wider mb-2 block",
+                formFieldInput: 
+                  "border-tiscu-navy/20 bg-white/60 focus:border-tiscu-steel focus:ring-2 focus:ring-tiscu-steel/20 " +
+                  "font-mono text-sm text-tiscu-navy placeholder-tiscu-muted/50 " +
+                  "rounded-lg px-4 py-3 transition-all duration-200",
+                formButtonPrimary:
+                  "w-full bg-tiscu-navy hover:bg-tiscu-steel focus:bg-tiscu-steel " +
+                  "text-white font-mono text-xs uppercase tracking-wider py-3 px-4 " +
+                  "rounded-lg transition-all duration-200 transform hover:scale-[1.02] " +
+                  "shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-tiscu-steel/20",
+                formButtonSecondary: "hidden",
+                footerAction: "mt-6 pt-6 border-t border-tiscu-navy/10",
+                footerActionLink: 
+                  "text-tiscu-steel hover:text-tiscu-navy font-mono text-xs " +
+                  "transition-colors duration-200 underline decoration-2 underline-offset-4",
+                identityPreview: 
+                  "bg-tiscu-navy/5 border-tiscu-navy/10 rounded-lg p-3 mb-4",
+                identityPreviewText: "font-mono text-xs text-tiscu-steel",
+                alertBox: 
+                  "bg-tiscu-navy/5 border-tiscu-steel/20 rounded-lg p-3",
+                alertText: "font-mono text-xs text-tiscu-navy",
+              },
+            }}
+            afterSignInUrl="/studio/dashboard"
+            redirectUrl="/studio/dashboard"
+          />
         </div>
 
         {/* Footer */}
