@@ -3,5 +3,5 @@
   <circle cx="60" cy="60" r="58" fill="#39455D"/>
   
   <!-- Triangle with color #EEF0F3 -->
-  <polygon points="60,30 90,82 30,82" fill="#EEF0F3" stroke="#EEF0F3" stroke-width="20" stroke-linejoin="round"/>
+  <polygon points="60,35 84,77 36,77" fill="#EEF0F3" stroke="#EEF0F3" stroke-width="16" stroke-linejoin="round"/>
 </svg>
