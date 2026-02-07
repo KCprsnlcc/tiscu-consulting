@@ -23,6 +23,25 @@ export default function LenisProvider({ children }: LenisProviderProps) {
       wheelMultiplier: shouldReduceMotion ? 0 : 1.2,
       touchMultiplier: shouldReduceMotion ? 0 : 2,
       infinite: false,
+      // Prevent Lenis from handling scroll on specific elements
+      prevent: (node) => {
+        // Check if the node or any of its parents should use vanilla scroll
+        let current: HTMLElement | null = node;
+        while (current && current !== document.body) {
+          if (
+            current.classList.contains('overflow-auto') ||
+            current.classList.contains('overflow-scroll') ||
+            current.classList.contains('overflow-y-auto') ||
+            current.classList.contains('overflow-y-scroll') ||
+            // Add specific data attribute for custom scroll containers
+            current.dataset?.lenisPrevent === 'true'
+          ) {
+            return true;
+          }
+          current = current.parentElement;
+        }
+        return false;
+      },
     });
 
     // RequestAnimationFrame loop for smooth scrolling
@@ -45,6 +64,25 @@ export default function LenisProvider({ children }: LenisProviderProps) {
           wheelMultiplier: e.matches ? 0 : 1.2,
           touchMultiplier: e.matches ? 0 : 2,
           infinite: false,
+          // Prevent Lenis from handling scroll on specific elements
+          prevent: (node) => {
+            // Check if the node or any of its parents should use vanilla scroll
+            let current: HTMLElement | null = node;
+            while (current && current !== document.body) {
+              if (
+                current.classList.contains('overflow-auto') ||
+                current.classList.contains('overflow-scroll') ||
+                current.classList.contains('overflow-y-auto') ||
+                current.classList.contains('overflow-y-scroll') ||
+                // Add specific data attribute for custom scroll containers
+                current.dataset?.lenisPrevent === 'true'
+              ) {
+                return true;
+              }
+              current = current.parentElement;
+            }
+            return false;
+          },
         });
         
         // Restart RAF loop
