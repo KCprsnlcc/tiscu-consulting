@@ -145,25 +145,25 @@ export default function HeroMobile() {
       {/* Mobile Content Deck */}
       <main className="bg-tiscu-steel/10 min-h-[40vh] relative">
         {/* Mobile Sidebar */}
-        <aside className="p-6 border-b border-tiscu-muted/20">
+        <aside className="p-6 border-b border-tiscu-muted/20 bg-[#39455D] text-[#EEF0F3]">
           <div>
-            <h2 className="font-grotesk text-xl font-medium mb-2 tracking-tight">PRINCIPLES</h2>
-            <h1 className="font-grotesk text-3xl font-bold leading-[0.9] tracking-tighter text-tiscu-navy uppercase mb-4">
+            <h2 className="font-grotesk text-xl font-medium mb-2 tracking-tight text-[#EEF0F3]">PRINCIPLES</h2>
+            <h1 className="font-grotesk text-3xl font-bold leading-[0.9] tracking-tighter text-[#EEF0F3] uppercase mb-4">
               STRUCTURAL<br />EXCELLENCE
             </h1>
-            <div className="w-12 h-0.5 bg-tiscu-navy mb-4" />
-            <blockquote className="text-xs text-tiscu-steel leading-relaxed font-light italic">
+            <div className="w-12 h-0.5 bg-[#EEF0F3] mb-4" />
+            <blockquote className="text-xs text-[#EEF0F3] leading-relaxed font-light italic">
               "The T-Square Principle: Precision in measurement creates excellence in structure. Every framework begins with a perfect right angle. In business architecture, as in technical drawing, the true measure of success lies not in complexity, but in the clarity of fundamental lines and the strength of their intersections. We build not just plans, but foundations that stand the test of market forces and organizational dynamics."
             </blockquote>
           </div>
-          <div className="font-mono text-[8px] text-tiscu-muted mt-6 leading-relaxed">
+          <div className="font-mono text-[8px] text-[#EEF0F3] mt-6 leading-relaxed">
             GLOBAL — CONSULTING<br />
             2024 — PRESENT
           </div>
         </aside>
 
         {/* Mobile Service List */}
-        <div className="px-6 py-4">
+        <div className="px-6 py-4 bg-[#39455D]">
           {[
             { id: '01', service: 'Business Architecture' },
             { id: '02', service: 'Process Optimization' },
@@ -174,12 +174,12 @@ export default function HeroMobile() {
           ].map((item, index) => (
             <motion.div
               key={item.id}
-              className="grid grid-cols-12 items-center py-3 border-b border-tiscu-muted/10 cursor-pointer transition-all duration-200"
+              className="grid grid-cols-12 items-center py-3 border-b border-tiscu-muted/10 cursor-pointer transition-all duration-200 hover:bg-tiscu-steel/20"
               whileHover={{ x: 4 }}
               transition={{ duration: 0.2 }}
             >
               <span className="col-span-2 font-mono text-xs text-tiscu-muted">{item.id}</span>
-              <span className="col-span-10 font-grotesk text-sm font-semibold tracking-tight text-tiscu-navy uppercase">
+              <span className="col-span-10 font-grotesk text-sm font-semibold tracking-tight text-[#EEF0F3] uppercase">
                 {item.service}
               </span>
             </motion.div>

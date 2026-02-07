@@ -136,25 +136,25 @@ export default function Hero() {
       {/* Content Deck */}
       <main className="bg-tiscu-steel/10 grid grid-cols-1 lg:grid-cols-12 min-h-[40vh] relative">
         {/* Sidebar */}
-        <aside className="lg:col-span-4 p-8 border-r border-tiscu-muted/20 flex flex-col justify-between">
+        <aside className="lg:col-span-4 p-8 border-r border-tiscu-muted/20 flex flex-col justify-between bg-[#39455D] text-[#EEF0F3]">
           <div>
-            <h2 className="font-grotesk text-2xl font-medium mb-2 tracking-tight">PRINCIPLES</h2>
-            <h1 className="font-grotesk text-4xl lg:text-5xl font-bold leading-[0.9] tracking-tighter text-tiscu-navy uppercase mb-6">
+            <h2 className="font-grotesk text-2xl font-medium mb-2 tracking-tight text-[#EEF0F3]">PRINCIPLES</h2>
+            <h1 className="font-grotesk text-4xl lg:text-5xl font-bold leading-[0.9] tracking-tighter text-[#EEF0F3] uppercase mb-6">
               STRUCTURAL<br />EXCELLENCE
             </h1>
-            <div className="w-16 h-0.5 bg-tiscu-navy mb-6" />
-            <blockquote className="text-sm text-tiscu-steel leading-relaxed font-light italic">
+            <div className="w-16 h-0.5 bg-[#EEF0F3] mb-6" />
+            <blockquote className="text-sm text-[#EEF0F3] leading-relaxed font-light italic">
               "The T-Square Principle: Precision in measurement creates excellence in structure. Every framework begins with a perfect right angle. In business architecture, as in technical drawing, the true measure of success lies not in complexity, but in the clarity of fundamental lines and the strength of their intersections. We build not just plans, but foundations that stand the test of market forces and organizational dynamics."
             </blockquote>
           </div>
-          <div className="font-mono text-xs text-tiscu-muted mt-8 leading-relaxed">
+          <div className="font-mono text-xs text-[#EEF0F3] mt-8 leading-relaxed">
             GLOBAL — CONSULTING<br />
             2024 — PRESENT
           </div>
         </aside>
 
         {/* Interactive Service List */}
-        <div className="lg:col-span-8">
+        <div className="lg:col-span-8 bg-[#39455D]">
           {[
             { id: '01', service: 'Business Architecture', meta: 'STRATEGIC / FRAMEWORK' },
             { id: '02', service: 'Process Optimization', meta: 'EFFICIENCY / SCALING' },
@@ -165,12 +165,12 @@ export default function Hero() {
           ].map((item, index) => (
             <motion.div
               key={item.id}
-              className="grid grid-cols-12 items-center px-8 py-6 border-b border-tiscu-muted/10 cursor-pointer transition-all duration-200 hover:bg-tiscu-bg/50"
+              className="grid grid-cols-12 items-center px-8 py-6 border-b border-tiscu-muted/10 cursor-pointer transition-all duration-200 hover:bg-tiscu-steel/20"
               whileHover={{ x: 8 }}
               transition={{ duration: 0.2 }}
             >
               <span className="col-span-1 font-mono text-xs text-tiscu-muted">{item.id}</span>
-              <span className="col-span-8 font-grotesk text-lg font-semibold tracking-tight text-tiscu-navy uppercase">
+              <span className="col-span-8 font-grotesk text-lg font-semibold tracking-tight text-[#EEF0F3] uppercase">
                 {item.service}
               </span>
               <span className="col-span-3 font-mono text-xs text-tiscu-steel text-right">
