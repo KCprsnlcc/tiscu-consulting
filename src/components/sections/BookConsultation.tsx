@@ -423,7 +423,7 @@ export default function BookConsultation() {
             <div className="space-y-5">
               {[
                 { icon: Phone, text: "+1 (555) 000-0000" },
-                { icon: Mail, text: "hello@tiscu.com" },
+                { icon: Mail, text: "hello@tiscuconsulting.com" },
                 { icon: MapPin, text: "Global — Remote & On-site" },
               ].map((item) => (
                 <div
