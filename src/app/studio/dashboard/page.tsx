@@ -467,7 +467,7 @@ export default function DashboardPage() {
         {/* Page Title */}
         <div className="mb-6 sm:mb-8">
           <span className="font-mono text-[10px] text-tiscu-steel uppercase tracking-widest">
-            Fig 4.0 — Studio
+            Client Relations
           </span>
           <h1 className="font-grotesk text-2xl sm:text-3xl font-medium text-tiscu-navy mt-1 tracking-tight">
             Booking Management
