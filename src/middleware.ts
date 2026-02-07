@@ -4,7 +4,6 @@ const isPublicRoute = createRouteMatcher([
   "/",
   "/studio",
   "/studio/sign-in(.*)",
-  "/studio/sign-up(.*)",
   "/studio/unauthorized",
 ]);
 

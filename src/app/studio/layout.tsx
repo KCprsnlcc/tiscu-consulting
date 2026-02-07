@@ -26,8 +26,7 @@ function StudioAuthGate({ children }: { children: ReactNode }) {
 
     if (
       pathname === "/studio/unauthorized" ||
-      pathname.startsWith("/studio/sign-in") ||
-      pathname.startsWith("/studio/sign-up")
+      pathname.startsWith("/studio/sign-in")
     ) {
       setIsAuthorized(true);
       setChecking(false);
@@ -59,8 +58,7 @@ function StudioAuthGate({ children }: { children: ReactNode }) {
   if (
     !isAuthorized &&
     pathname !== "/studio/unauthorized" &&
-    !pathname.startsWith("/studio/sign-in") &&
-    !pathname.startsWith("/studio/sign-up")
+    !pathname.startsWith("/studio/sign-in")
   ) {
     return null;
   }
