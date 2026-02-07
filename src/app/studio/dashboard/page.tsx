@@ -490,25 +490,25 @@ export default function DashboardPage() {
             label="Pending"
             value={stats?.pending ?? 0}
             icon={Clock}
-            accent="text-amber-600 bg-amber-50"
+            accent="text-tiscu-navy bg-tiscu-navy/5"
           />
           <StatCard
             label="Confirmed"
             value={stats?.confirmed ?? 0}
             icon={AlertCircle}
-            accent="text-blue-600 bg-blue-50"
+            accent="text-tiscu-navy bg-tiscu-navy/5"
           />
           <StatCard
             label="Completed"
             value={stats?.completed ?? 0}
             icon={CheckCircle2}
-            accent="text-emerald-600 bg-emerald-50"
+            accent="text-tiscu-navy bg-tiscu-navy/5"
           />
           <StatCard
             label="Cancelled"
             value={stats?.cancelled ?? 0}
             icon={XCircle}
-            accent="text-red-600 bg-red-50"
+            accent="text-tiscu-navy bg-tiscu-navy/5"
           />
         </div>
 
