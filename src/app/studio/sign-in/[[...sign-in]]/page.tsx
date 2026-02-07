@@ -37,9 +37,7 @@ export default function SignInPage() {
               headerSubtitle: "font-mono text-tiscu-steel text-xs hidden",
               socialButtonsBlock: "hidden",
               dividerRow: "hidden",
-              form: "space-y-5",
-              formField: "space-y-2",
-              formFieldLabel: "font-mono text-xs text-tiscu-steel uppercase tracking-wider mb-2 block",
+              formFieldLabel: "font-mono text-xs text-tiscu-steel uppercase tracking-wider block",
               formFieldInput: 
                 "border-tiscu-navy/20 bg-white/60 focus:border-tiscu-steel focus:ring-2 focus:ring-tiscu-steel/20 " +
                 "font-mono text-sm text-tiscu-navy placeholder-tiscu-muted/50 " +
