@@ -36,11 +36,6 @@ export default function SignInPage() {
                   rootBox: "w-full mx-auto",
                   card: "w-full bg-transparent border-0 shadow-none p-0 mx-auto",
                   
-                  // Header styling
-                  headerTitle: "hidden",
-                  headerSubtitle: "hidden",
-                  header: "hidden",
-                  
                   // Social buttons (hidden for consultant portal)
                   socialButtonsBlock: "hidden",
                   socialButtonsDivider: "hidden",
