@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, useSpring, useTransform, useMotionValue, useReducedMotion } from "framer-motion";
+import { Triangle } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import { ParallaxContainer, ScaleOnScroll, WaterWave, TypewriterReveal } from "@/components/ui/ScrollEffects";
 
@@ -99,39 +100,23 @@ export default function Hero() {
         </div>
 
         {/* Glass Triangle Visual Element */}
-        <motion.div
-          className="absolute w-[300px] h-[300px] overflow-hidden"
+        <div
+          className="absolute w-[400px] h-[400px] flex items-center justify-center z-30"
           style={{
-            clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-            background: `radial-gradient(circle at 30% 30%, rgba(57, 69, 93, 0.1), rgba(109, 131, 151, 0.05))`,
-            border: '1px solid rgba(152, 167, 181, 0.3)',
-            boxShadow: `
-              inset 0 0 20px rgba(57, 69, 93, 0.2),
-              10px 20px 40px rgba(57, 69, 93, 0.1)
-            `,
-            rotateX: springRotateX,
-            rotateY: springRotateY,
+            transform: 'rotate(-10deg)',
             transformStyle: 'preserve-3d'
           }}
-          animate={shouldReduceMotion ? {} : {
-            y: [0, -15, 0],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
         >
-          {/* Inner layers for glass effect */}
-          <div className="absolute inset-0 bg-gradient-to-br from-tiscu-navy/5 to-tiscu-steel/10" 
-               style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }} />
-          <div className="absolute top-10% right-15% w-16 h-8 bg-white rounded-full blur-sm rotate-[-45deg] opacity-60" />
-          <div className="absolute inset-2.5 border-2 border-tiscu-muted/50" 
-               style={{ 
-                 clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-                 maskImage: 'linear-gradient(to bottom right, black, transparent)' 
-               }} />
-        </motion.div>
+          <Triangle 
+            className="w-80 h-80 fill-white text-white drop-shadow-lg stroke-none"
+            style={{
+              filter: `
+                drop-shadow(0 0 10px rgba(57, 69, 93, 0.2))
+                drop-shadow(5px 10px 20px rgba(57, 69, 93, 0.1))
+              `
+            }}
+          />
+        </div>
 
 
         {/* Meta Coordinates */}
