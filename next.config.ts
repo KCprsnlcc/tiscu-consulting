@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
   experimental: {
-    middlewarePrefetch: 'strict',
+    proxyPrefetch: 'strict',
   },
   // Enable SSR for better SEO
   output: undefined, // Default is 'standalone' for SSR
@@ -20,7 +20,6 @@ const nextConfig: NextConfig = {
           },
         ],
         destination: 'https://www.tiscuconsulting.com/:path*',
-        permanent: true,
       },
     ];
   },
