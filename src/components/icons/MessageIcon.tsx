@@ -11,7 +11,7 @@ export default function MessageIcon() {
       whileTap={{ scale: 0.95 }}
       transition={{ duration: 0.2, type: "spring", stiffness: 400, damping: 10 }}
     >
-      <MessageCircle size={24} />
+      <MessageCircle size={24} fill="white" />
     </motion.button>
   );
 }
