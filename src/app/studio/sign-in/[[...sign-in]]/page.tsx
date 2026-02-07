@@ -5,7 +5,8 @@ import { Lock } from "lucide-react";
 
 export default function SignInPage() {
   return (
-    <>
+    <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="w-full max-w-md space-y-8">
       {/* Header Section */}
       <div>
         
@@ -68,6 +69,7 @@ export default function SignInPage() {
           Secure Access • TISCU Consulting Platform
         </p>
       </div>
-    </>
+      </div>
+    </div>
   );
 }
