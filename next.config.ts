@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
   experimental: {
     middlewarePrefetch: 'strict',
   },
+  // Enable SSR for better SEO
+  output: undefined, // Default is 'standalone' for SSR
   // Redirect non-www to www
   async rewrites() {
     return [
