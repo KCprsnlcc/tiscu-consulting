@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 import { Send, Phone, Mail, MapPin, ChevronDown, Calendar } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import { MagneticButton } from "@/components/ui/ScrollEffects";
@@ -356,6 +358,7 @@ const CustomDatePicker = ({
 };
 
 export default function BookConsultation() {
+  const createBooking = useMutation(api.bookings.create);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -365,19 +368,36 @@ export default function BookConsultation() {
     message: "",
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 4000);
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      service: "",
-      date: "",
-      message: "",
-    });
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    try {
+      await createBooking({
+        name: formData.name,
+        email: formData.email,
+        company: formData.company || undefined,
+        service: formData.service,
+        date: formData.date,
+        message: formData.message || undefined,
+      });
+      setFormSubmitted(true);
+      setTimeout(() => setFormSubmitted(false), 4000);
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        service: "",
+        date: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Failed to submit booking:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inputClasses =
@@ -526,10 +546,13 @@ export default function BookConsultation() {
 
               <MagneticButton
                 type="submit"
-                className="mt-6 inline-flex w-full items-center justify-center gap-2 border border-tiscu-navy bg-tiscu-navy px-6 py-3.5 font-grotesk text-sm font-medium text-tiscu-bg transition-all duration-300 hover:bg-transparent hover:text-tiscu-navy cursor-pointer"
+                disabled={isSubmitting}
+                className="mt-6 inline-flex w-full items-center justify-center gap-2 border border-tiscu-navy bg-tiscu-navy px-6 py-3.5 font-grotesk text-sm font-medium text-tiscu-bg transition-all duration-300 hover:bg-transparent hover:text-tiscu-navy cursor-pointer disabled:opacity-60 disabled:cursor-wait"
               >
                 {formSubmitted ? (
                   "THANK YOU — WE'LL BE IN TOUCH."
+                ) : isSubmitting ? (
+                  "SUBMITTING..."
                 ) : (
                   <>
                     SEND REQUEST

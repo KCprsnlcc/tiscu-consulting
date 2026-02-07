@@ -271,12 +271,14 @@ export const MagneticButton = ({
   children, 
   className = "",
   strength = 0.3,
-  type = "button"
+  type = "button",
+  disabled = false
 }: {
   children: React.ReactNode;
   className?: string;
   strength?: number;
   type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }) => {
   const ref = useRef<HTMLButtonElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -302,6 +304,7 @@ export const MagneticButton = ({
     <motion.button
       ref={ref}
       type={type}
+      disabled={disabled}
       className={className}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}

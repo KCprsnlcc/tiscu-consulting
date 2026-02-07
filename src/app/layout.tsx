@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import LenisProvider from "@/components/providers/LenisProvider";
 import PageTransitionProvider from "@/components/providers/PageTransitionProvider";
+import { ConvexPublicProvider } from "@/components/providers/ConvexClientProvider";
 import PageLoader from "@/components/ui/PageLoader";
 import "./globals.css";
 
@@ -39,12 +40,14 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased overflow-x-hidden`}
       >
-        <PageTransitionProvider>
-          <LenisProvider>
-            {children}
-            <PageLoader />
-          </LenisProvider>
-        </PageTransitionProvider>
+        <ConvexPublicProvider>
+          <PageTransitionProvider>
+            <LenisProvider>
+              {children}
+              <PageLoader />
+            </LenisProvider>
+          </PageTransitionProvider>
+        </ConvexPublicProvider>
         <Analytics />
       </body>
     </html>
