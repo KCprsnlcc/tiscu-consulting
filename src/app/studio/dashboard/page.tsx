@@ -356,8 +356,8 @@ function BookingDetailModal({
 export default function DashboardPage() {
   const { user } = useUser();
   const { signOut } = useClerk();
-  const bookings = useQuery(api.bookings.list);
-  const stats = useQuery(api.bookings.getStats);
+  const bookings = useQuery(api.bookings.list, {});
+  const stats = useQuery(api.bookings.getStats, {});
   const updateStatus = useMutation(api.bookings.updateStatus);
   const updateNotes = useMutation(api.bookings.updateNotes);
   const removeBooking = useMutation(api.bookings.remove);
