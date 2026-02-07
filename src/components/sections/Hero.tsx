@@ -108,11 +108,11 @@ export default function Hero() {
           }}
         >
           <Triangle 
-            className="w-80 h-80 fill-white text-white drop-shadow-lg stroke-none"
+            className="w-80 h-80 fill-white text-white drop-shadow-sm stroke-none"
             style={{
               filter: `
-                drop-shadow(0 0 10px rgba(57, 69, 93, 0.2))
-                drop-shadow(5px 10px 20px rgba(57, 69, 93, 0.1))
+                drop-shadow(0 0 5px rgba(57, 69, 93, 0.1))
+                drop-shadow(2px 4px 8px rgba(57, 69, 93, 0.05))
               `
             }}
           />
