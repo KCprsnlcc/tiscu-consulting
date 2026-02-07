@@ -4,7 +4,8 @@ import { ReactNode, useEffect, useState } from "react";
 import { useUser, useAuth } from "@clerk/nextjs";
 import { useRouter, usePathname } from "next/navigation";
 import { ConvexClerkProvider } from "@/components/providers/ConvexClientProvider";
-import { Loader2 } from "lucide-react";
+import { Triangle } from "lucide-react";
+import { motion } from "framer-motion";
 
 function StudioAuthGate({ children }: { children: ReactNode }) {
   const { user, isLoaded: userLoaded } = useUser();
@@ -52,7 +53,24 @@ function StudioAuthGate({ children }: { children: ReactNode }) {
     return (
       <div className="min-h-screen bg-tiscu-bg flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <Loader2 className="h-6 w-6 text-tiscu-steel animate-spin" />
+          <motion.div
+            animate={{
+              rotate: [0, 360],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="relative"
+            aria-hidden="true"
+          >
+            <Triangle 
+              className="h-6 w-6 text-tiscu-steel" 
+              fill="currentColor"
+              strokeWidth={0}
+            />
+          </motion.div>
           <span className="font-mono text-xs text-tiscu-steel uppercase tracking-wider">
             Verifying consultant access...
           </span>
