@@ -5,6 +5,7 @@ import { motion, useSpring, useTransform, useMotionValue, useReducedMotion } fro
 import { Triangle } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import { ParallaxContainer, ScaleOnScroll, WaterWave, TypewriterReveal } from "@/components/ui/ScrollEffects";
+import MessageIcon from "@/components/icons/MessageIcon";
 
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -209,16 +210,7 @@ export default function Hero() {
       </footer>
 
       {/* Floating Action Button */}
-      <motion.button
-        className="fixed bottom-8 right-8 w-16 h-16 bg-tiscu-navy text-tiscu-bg rounded-full flex items-center justify-center text-2xl shadow-xl z-50 cursor-pointer"
-        whileHover={{ scale: 1.1, rotate: 90 }}
-        whileTap={{ scale: 0.95 }}
-        transition={{ duration: 0.2, type: "spring", stiffness: 400, damping: 10 }}
-      >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polygon points="5 3 19 12 5 21 5 3" />
-        </svg>
-      </motion.button>
+      <MessageIcon />
     </div>
   );
 }
