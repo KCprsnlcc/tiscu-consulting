@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import LenisProvider from "@/components/providers/LenisProvider";
 import PageTransitionProvider from "@/components/providers/PageTransitionProvider";
 import PageLoader from "@/components/ui/PageLoader";
@@ -44,6 +45,7 @@ export default function RootLayout({
             <PageLoader />
           </LenisProvider>
         </PageTransitionProvider>
+        <Analytics />
       </body>
     </html>
   );
