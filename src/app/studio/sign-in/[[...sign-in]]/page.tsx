@@ -47,7 +47,7 @@ export default function SignInPage() {
                   dividerRow: "hidden",
                   
                   // Form fields
-                  formFieldLabel: "font-mono text-xs text-tiscu-steel uppercase tracking-wider block",
+                  formFieldLabel: "font-mono text-xs text-tiscu-steel uppercase tracking-wider block mb-2",
                   formFieldInput: 
                     "w-full bg-white/60 border border-tiscu-navy/20 rounded-lg " +
                     "font-mono text-sm text-tiscu-navy placeholder-tiscu-muted/50 " +
@@ -89,8 +89,6 @@ export default function SignInPage() {
                   loading: "opacity-50 pointer-events-none",
                   
                   // Additional form elements
-                  form: "space-y-0",
-                  formField: "space-y-2",
                   formButton: "w-full",
                   
                   // Text inputs specific
