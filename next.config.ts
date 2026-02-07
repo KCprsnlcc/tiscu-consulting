@@ -6,6 +6,22 @@ const nextConfig: NextConfig = {
   experimental: {
     middlewarePrefetch: 'strict',
   },
+  // Redirect non-www to www
+  async rewrites() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'tiscuconsulting.com',
+          },
+        ],
+        destination: 'https://www.tiscuconsulting.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
