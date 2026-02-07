@@ -6,19 +6,27 @@ import { useEffect } from "react";
 import { Loader2 } from "lucide-react";
 
 export default function StudioPage() {
-  const { isSignedIn, isLoaded: userLoaded } = useUser();
+  const { user, isSignedIn, isLoaded: userLoaded } = useUser();
   const { isLoaded: authLoaded } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
     if (!authLoaded || !userLoaded) return;
 
-    if (isSignedIn) {
-      router.replace("/studio/dashboard");
+    if (isSignedIn && user) {
+      // Check user role before redirecting
+      const role = user?.publicMetadata?.role as string | undefined;
+      
+      if (role === "consultant") {
+        router.replace("/studio/dashboard");
+      } else {
+        // Non-consultant users go to unauthorized page
+        router.replace("/studio/unauthorized");
+      }
     } else {
       router.replace("/studio/sign-in");
     }
-  }, [isSignedIn, authLoaded, userLoaded, router]);
+  }, [isSignedIn, authLoaded, userLoaded, user, router]);
 
   if (!authLoaded || !userLoaded) {
     return (

@@ -17,13 +17,7 @@ function StudioAuthGate({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!authLoaded || !userLoaded) return;
 
-    if (!isSignedIn) {
-      setChecking(false);
-      return;
-    }
-
-    const role = user?.publicMetadata?.role as string | undefined;
-
+    // Allow access to public routes
     if (
       pathname === "/studio/unauthorized" ||
       pathname.startsWith("/studio/sign-in")
@@ -33,37 +27,51 @@ function StudioAuthGate({ children }: { children: ReactNode }) {
       return;
     }
 
+    // Must be signed in to access any other studio routes
+    if (!isSignedIn) {
+      setChecking(false);
+      router.replace("/studio/sign-in");
+      return;
+    }
+
+    // Check user role
+    const role = user?.publicMetadata?.role as string | undefined;
+    
     if (role === "consultant") {
       setIsAuthorized(true);
       setChecking(false);
     } else {
+      // Immediately redirect non-consultant users
       router.replace("/studio/unauthorized");
       setChecking(false);
     }
   }, [authLoaded, userLoaded, isSignedIn, user, pathname, router]);
 
+  // Show loading state while checking
   if (!authLoaded || !userLoaded || checking) {
     return (
       <div className="min-h-screen bg-tiscu-bg flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <Loader2 className="h-6 w-6 text-tiscu-steel animate-spin" />
           <span className="font-mono text-xs text-tiscu-steel uppercase tracking-wider">
-            Verifying access...
+            Verifying consultant access...
           </span>
         </div>
       </div>
     );
   }
 
+  // Only render children if authorized or on public routes
   if (
-    !isAuthorized &&
-    pathname !== "/studio/unauthorized" &&
-    !pathname.startsWith("/studio/sign-in")
+    isAuthorized ||
+    pathname === "/studio/unauthorized" ||
+    pathname.startsWith("/studio/sign-in")
   ) {
-    return null;
+    return <>{children}</>;
   }
 
-  return <>{children}</>;
+  // Return null while redirecting
+  return null;
 }
 
 export default function StudioLayout({ children }: { children: ReactNode }) {
